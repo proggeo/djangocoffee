@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+<form action="{% url 'coffee:order_drink' %}" method="post" class="form-group">
+{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <p>Enter your ID:</p>
+            <input type="text" name="user" id="name" class="form-control col-md-6"/>
+        </div>
+    </div>
+<div class="row">
+    <div id="drinks" class="col-md-6">
+    {% if drinks %}
+        {% for drink in drinks %}
+            <div class="checkbox">
+                <p><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ drink.id }}"/>
+                <label for="choice{{ forloop.counter }}">{{ drink.name }}: {{ drink.price }}</label></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No drinks found</p>
+    {% endif %}
+    </div>
+<div class="col-md-6">
+    {% if ingredients %}
+
+        {% for ingredient in ingredients %}
+            <div class="checkbox">
+                <p><input type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}"/>
+                <label for="ingredient{{ forloop.counter }}">{{ ingredient.name }}: {{ ingredient.price }}</label></p>
+            </div>
+        {% endfor %}
+
+        {% else %}
+        <p>No ingredients found</p>
+    {% endif %}
+</div>
+</div>
+    <div class="row">
+        <input type="submit" value="Order" class="btn btn-success btn-block"/>
+    </div>
+</form>
+
+
+
+</div>
+
+</body>
+</html>
