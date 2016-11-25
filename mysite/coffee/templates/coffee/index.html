@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Coffee</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'coffee/bootstrap.min.css' %}" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -11,8 +12,7 @@
 {% csrf_token %}
     <div class="row">
         <div class="col-md-6">
-            <p>Enter your ID:</p>
-            <input type="text" name="user" id="name" class="form-control col-md-6"/>
+            <p>Welcome {{ user.user_name }}</p>
         </div>
     </div>
 <div class="row">
@@ -20,7 +20,7 @@
     {% if drinks %}
         {% for drink in drinks %}
             <div class="checkbox">
-                <p><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ drink.id }}"/>
+                <p><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ drink.id }}" {% if drink.amount_left < 1 %} disabled{% endif %}/>
                 <label for="choice{{ forloop.counter }}">{{ drink.name }}: {{ drink.price }}</label></p>
             </div>
         {% endfor %}
@@ -33,7 +33,7 @@
 
         {% for ingredient in ingredients %}
             <div class="checkbox">
-                <p><input type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}"/>
+                <p><input type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}" {% if ingredient.amount_left < 1 %} disabled{% endif %}/>
                 <label for="ingredient{{ forloop.counter }}">{{ ingredient.name }}: {{ ingredient.price }}</label></p>
             </div>
         {% endfor %}

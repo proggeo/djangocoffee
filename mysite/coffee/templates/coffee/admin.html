@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'coffee/bootstrap.min.css' %}" type="text/css">
+</head>
+<body>
+<div class="container">
+    <form action="{% url 'coffee:admin_update' %}" method="post" class="form-group">
+    {% csrf_token %}
+        <div class="container">
+            {% if drinks %}
+                {% for drink in drinks %}
+                    <div class="checkbox">
+                        <p class="col-md-4">{{ drink.name }}</p>
+                        <input type="text" name="drink{{ drink.id }}" value="{{ drink.amount_left }}">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No drinks found</p>
+            {% endif %}
+        </div>
+        <div class="container" id="ingredients">
+            {% if ingredients %}
+                {% for ingredient in ingredients %}
+                    <div class="checkbox">
+                        <p class="col-md-4">{{ ingredient.name }}</p>
+                        <input type="text" name="ingredient{{ ingredient.id }}" value="{{ ingredient.amount_left }}">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No ingredients found</p>
+            {% endif %}
+        </div>
+        <div class="container" id="users">
+            {% if users %}
+                {% for user in users %}
+                    <div class="checkbox">
+                        <p class="col-md-4">{{ user.user_name }}</p>
+                        <input type="text" name="user{{ user.id }}" value="{{ user.money_left }}">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No users found</p>
+            {% endif %}
+        </div>
+    <div class="row">
+        <input type="submit" value="Submit" class="btn btn-success btn-block"/>
+    </div>
+    </form>
+</div>
+</body>
+</html>
