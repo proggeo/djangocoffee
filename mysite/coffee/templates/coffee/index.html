@@ -1,9 +1,11 @@
+{% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Coffee</title>
-    {% load static %}
+    <title>{% trans "Coffee_machine" %}</title>
     <link rel="stylesheet" href="{% static 'coffee/bootstrap.min.css' %}" type="text/css">
 </head>
 <body>
@@ -12,7 +14,7 @@
 {% csrf_token %}
     <div class="row">
         <div class="col-md-6">
-            <p>Welcome {{ user.user_name }}</p>
+            <p>{% trans "Welcome" %} {{ user.user_name }}</p>
         </div>
     </div>
 <div class="row">
@@ -25,7 +27,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <p>No drinks found</p>
+        <p>{% trans "No_drinks_found" %}</p>
     {% endif %}
     </div>
 <div class="col-md-6">
@@ -39,16 +41,14 @@
         {% endfor %}
 
         {% else %}
-        <p>No ingredients found</p>
+        <p>{% trans "No_ingredients_found" %}</p>
     {% endif %}
 </div>
 </div>
     <div class="row">
-        <input type="submit" value="Order" class="btn btn-success btn-block"/>
+        <input type="submit" value="{% trans "Order" %}" class="btn btn-success btn-block"/>
     </div>
 </form>
-
-
 
 </div>
 
