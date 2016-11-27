@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^admin_update/$', views.admin_update, name='admin_update'),
     url(r'^order_page/$', views.order_page, name='order_page'),
     url(r'^order/$', views.order_drink, name='order_drink'),
+    url(r'^success/$', views.success, name='success'),
 ]

@@ -15,11 +15,13 @@
     <div class="row">
         <div class="col-md-6">
             <p>{% trans "Welcome" %} {{ user.user_name }}</p>
+            <p>{% trans "money_left" %}: {{ user.money_left}}</p>
         </div>
     </div>
 <div class="row">
-    <div id="drinks" class="col-md-6">
+    <div id="drinks" class="col-md-6 container">
     {% if drinks %}
+        <p>{% trans "choose_drink" %}</p>
         {% for drink in drinks %}
             <div class="checkbox">
                 <p><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ drink.id }}" {% if drink.amount_left < 1 %} disabled{% endif %}/>
@@ -30,12 +32,12 @@
         <p>{% trans "No_drinks_found" %}</p>
     {% endif %}
     </div>
-<div class="col-md-6">
+<div class="col-md-6 container">
     {% if ingredients %}
-
+        <p>{% trans "choose_ingredient" %}</p>
         {% for ingredient in ingredients %}
             <div class="checkbox">
-                <p><input type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}" {% if ingredient.amount_left < 1 %} disabled{% endif %}/>
+                <p><input class="checkbox" type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}" {% if ingredient.amount_left < 1 %} disabled{% endif %}/>
                 <label for="ingredient{{ forloop.counter }}">{{ ingredient.name }}: {{ ingredient.price }}</label></p>
             </div>
         {% endfor %}
@@ -49,7 +51,9 @@
         <input type="submit" value="{% trans "Order" %}" class="btn btn-success btn-block"/>
     </div>
 </form>
-
+{% if user.is_admin %}
+    <a href="{% url 'coffee:admin_page' %}">{% trans "admin_page" %}</a>
+{% endif %}
 </div>
 
 </body>

@@ -103,20 +103,32 @@ def order_drink(request):
     else:
         user = User.objects.get(id=request.session['user_id'])
         order_sum = selected_drink.price
-        selected_drink.amount_left -= 1
-        selected_drink.save()
         order = Order(user=user, drink=selected_drink, order_sum=order_sum, date=timezone.now())
-        order.save()
+        ingredients = list()
         if 'ingredient' in request.POST:
             for i in request.POST.getlist(key='ingredient'):
                 ingredient = get_object_or_404(Ingredient, pk=i)
                 order_sum += ingredient.price
-                ingredient.amount_left -= 1
-                order.ingredients.add(ingredient)
-                ingredient.save()
+                ingredients.append(ingredient)
         order.order_sum = order_sum
-        order.save()
-        if user.money_left < order.order_sum:
+        if user.money_left > order.order_sum:
             user.money_left -= order.order_sum
-        user.save()
+            user.save()
+            selected_drink.amount_left -= 1
+            selected_drink.save()
+            order.save()
+            for ingredient in ingredients:
+                order.ingredients.add(ingredient)
+                ingredient.amount_left -= 1
+                ingredient.save()
+            order.save()
+            return HttpResponseRedirect('/coffee/success')
         return HttpResponseRedirect('/coffee/order_page/')
+
+
+def success(request):
+    if 'type' not in request.session:
+        return HttpResponseRedirect('/coffee/')
+    user = User.objects.get(id=request.session['user_id'])
+    context = {'user': user}
+    return render(request, 'coffee/success.html', context)

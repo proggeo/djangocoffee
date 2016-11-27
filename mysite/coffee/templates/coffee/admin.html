@@ -1,18 +1,26 @@
+{% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>admin</title>
-    {% load static %}
-    {% load i18n %}
     <link rel="stylesheet" href="{% static 'coffee/bootstrap.min.css' %}" type="text/css">
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p>{% trans "Welcome" %} {{ user.user_name }}</p>
+        </div>
+    </div>
     <form action="{% url 'coffee:admin_update' %}" method="post" class="form-group">
     {% csrf_token %}
-        <div class="container">
+    <div class="container col-md-6" id="drinks_and_ingredients">
+        <div class="container" id="drinks">
             {% if drinks %}
+               <p>{% trans "refill_drinks" %}</p>
                 {% for drink in drinks %}
                     <div class="checkbox">
                         <p class="col-md-4">{{ drink.name }}</p>
@@ -25,6 +33,7 @@
         </div>
         <div class="container" id="ingredients">
             {% if ingredients %}
+                <p>{% trans "refill_ingredients" %}</p>
                 {% for ingredient in ingredients %}
                     <div class="checkbox">
                         <p class="col-md-4">{{ ingredient.name }}</p>
@@ -35,8 +44,10 @@
                 <p>{% trans "No_ingredients_found" %}</p>
             {% endif %}
         </div>
-        <div class="container" id="users">
+    </div>
+        <div class="container col-md-6" id="users">
             {% if users %}
+                <p>{% trans "refill_accounts" %}</p>
                 {% for user in users %}
                     <div class="checkbox">
                         <p class="col-md-4">{{ user.user_name }}</p>
@@ -51,6 +62,8 @@
         <input type="submit" value="{% trans "Submit" %}" class="btn btn-success btn-block"/>
     </div>
     </form>
+    <a href="{% url 'coffee:order_page' %}">{% trans "order_page" %}</a>
+
 </div>
 </body>
 </html>

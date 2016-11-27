@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "Success_page_title"%}</title>
+    <link rel="stylesheet" href="{% static 'coffee/bootstrap.min.css' %}" type="text/css">
+</head>
+<body>
+<div class="container">
+    <h2>{% trans "Success_page_title" %}</h2>
+    <p>{% trans "enjoy_your_drink" %}, {{ user.user_name }}</p>
+    <p>{% trans "money_left" %}: {{ user.money_left }}</p>
+    <a href="{% url 'coffee:order_page' %}">{% trans "order_again" %}</a>
+</div>
+</body>
+</html>
