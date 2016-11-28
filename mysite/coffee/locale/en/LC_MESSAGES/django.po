@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-27 03:23+0200\n"
+"POT-Creation-Date: 2016-11-29 00:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: mysite/coffee/templates/coffee/admin.html:18
+#: mysite/coffee/templates/coffee/admin.html:15
+#: mysite/coffee/templates/coffee/index.html:17
+msgid "Welcome"
+msgstr "Welcome, "
+
+#: mysite/coffee/templates/coffee/admin.html:23
 msgid "refill_drinks"
 msgstr "Refill drinks"
 
-#: mysite/coffee/templates/coffee/admin.html:26
+#: mysite/coffee/templates/coffee/admin.html:31
 #: mysite/coffee/templates/coffee/index.html:32
 msgid "No_drinks_found"
 msgstr "No drinks found"
 
-#: mysite/coffee/templates/coffee/admin.html:31
+#: mysite/coffee/templates/coffee/admin.html:36
 msgid "refill_ingredients"
 msgstr "Refill ingredients"
 
-#: mysite/coffee/templates/coffee/admin.html:39
+#: mysite/coffee/templates/coffee/admin.html:44
 #: mysite/coffee/templates/coffee/index.html:46
 msgid "No_ingredients_found"
 msgstr "No ingredients found"
 
-#: mysite/coffee/templates/coffee/admin.html:45
+#: mysite/coffee/templates/coffee/admin.html:50
 msgid "refill_accounts"
 msgstr "Refill accounts"
 
-#: mysite/coffee/templates/coffee/admin.html:53
+#: mysite/coffee/templates/coffee/admin.html:58
 msgid "No_users_found"
 msgstr "No users found"
 
-#: mysite/coffee/templates/coffee/admin.html:57
+#: mysite/coffee/templates/coffee/admin.html:62
 msgid "Submit"
 msgstr "Submit"
 
-#: mysite/coffee/templates/coffee/admin.html:60
+#: mysite/coffee/templates/coffee/admin.html:65
 msgid "order_page"
 msgstr "Order page"
+
+#: mysite/coffee/templates/coffee/admin.html:66
+#: mysite/coffee/templates/coffee/index.html:57
+#: mysite/coffee/templates/coffee/success.html:17
+msgid "logout"
+msgstr "Logout"
 
 #: mysite/coffee/templates/coffee/index.html:8
 msgid "Coffee_machine"
 msgstr "Coffee machine"
 
-#: mysite/coffee/templates/coffee/index.html:17
-msgid "Welcome"
-msgstr "Welcome, "
-
 #: mysite/coffee/templates/coffee/index.html:18
-#: mysite/coffee/templates/coffee/success.html:14
+#: mysite/coffee/templates/coffee/success.html:15
 msgid "money_left"
 msgstr "Money left"
 
@@ -90,15 +97,23 @@ msgstr "Name"
 msgid "Password"
 msgstr "Password"
 
+#: mysite/coffee/templates/coffee/login.html:20
+msgid "login"
+msgstr "Login"
+
+#: mysite/coffee/templates/coffee/login.html:23
+msgid "register"
+msgstr "Register"
+
 #: mysite/coffee/templates/coffee/success.html:8
-#: mysite/coffee/templates/coffee/success.html:12
+#: mysite/coffee/templates/coffee/success.html:13
 msgid "Success_page_title"
 msgstr "Order success"
 
-#: mysite/coffee/templates/coffee/success.html:13
+#: mysite/coffee/templates/coffee/success.html:14
 msgid "enjoy_your_drink"
 msgstr "Enjoy your drink"
 
-#: mysite/coffee/templates/coffee/success.html:15
+#: mysite/coffee/templates/coffee/success.html:16
 msgid "order_again"
 msgstr "Order again"

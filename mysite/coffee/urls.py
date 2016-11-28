@@ -14,4 +14,11 @@ urlpatterns = [
     url(r'^order_page/$', views.order_page, name='order_page'),
     url(r'^order/$', views.order_drink, name='order_drink'),
     url(r'^success/$', views.success, name='success'),
+
+    url(r'^drink/$', views.DrinkList.as_view()),
+    url(r'^drink/(?P<pk>[0-9]+)/$', views.DrinkDetail.as_view()),
+    url(r'ingredient/$', views.IngredientList.as_view()),
+    url(r'ingredient/(?P<pk>[0-9]+)/$', views.IngredientDetail.as_view()),
+    url(r'^logout/$', views.logout, name='logout')
+
 ]

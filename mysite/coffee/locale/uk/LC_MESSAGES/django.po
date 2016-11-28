@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-27 03:24+0200\n"
+"POT-Creation-Date: 2016-11-29 00:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,52 +19,59 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: mysite/coffee/templates/coffee/admin.html:18
+#: mysite/coffee/templates/coffee/admin.html:15
+#: mysite/coffee/templates/coffee/index.html:17
+msgid "Welcome"
+msgstr "Вітаю, "
+
+#: mysite/coffee/templates/coffee/admin.html:23
 msgid "refill_drinks"
 msgstr "Поповнити запас напоїв"
 
-#: mysite/coffee/templates/coffee/admin.html:26
+#: mysite/coffee/templates/coffee/admin.html:31
 #: mysite/coffee/templates/coffee/index.html:32
 msgid "No_drinks_found"
 msgstr "Напоїв не знайдено"
 
-#: mysite/coffee/templates/coffee/admin.html:31
+#: mysite/coffee/templates/coffee/admin.html:36
 msgid "refill_ingredients"
 msgstr "Поповнити запас додатків"
 
-#: mysite/coffee/templates/coffee/admin.html:39
+#: mysite/coffee/templates/coffee/admin.html:44
 #: mysite/coffee/templates/coffee/index.html:46
 msgid "No_ingredients_found"
 msgstr "Додатків не знайдено"
 
-#: mysite/coffee/templates/coffee/admin.html:45
+#: mysite/coffee/templates/coffee/admin.html:50
 msgid "refill_accounts"
 msgstr "Поповнити рахунки користувачів"
 
-#: mysite/coffee/templates/coffee/admin.html:53
+#: mysite/coffee/templates/coffee/admin.html:58
 msgid "No_users_found"
 msgstr "Користувачів не знайдено"
 
-#: mysite/coffee/templates/coffee/admin.html:57
+#: mysite/coffee/templates/coffee/admin.html:62
 msgid "Submit"
 msgstr "Підтвердити"
 
-#: mysite/coffee/templates/coffee/admin.html:60
+#: mysite/coffee/templates/coffee/admin.html:65
 msgid "order_page"
 msgstr "Сторінка замовлення"
+
+#: mysite/coffee/templates/coffee/admin.html:66
+#: mysite/coffee/templates/coffee/index.html:57
+#: mysite/coffee/templates/coffee/success.html:17
+msgid "logout"
+msgstr "Вийти"
 
 #: mysite/coffee/templates/coffee/index.html:8
 msgid "Coffee_machine"
 msgstr "Кава-машина"
 
-#: mysite/coffee/templates/coffee/index.html:17
-msgid "Welcome"
-msgstr "Вітаю, "
-
 #: mysite/coffee/templates/coffee/index.html:18
-#: mysite/coffee/templates/coffee/success.html:14
+#: mysite/coffee/templates/coffee/success.html:15
 msgid "money_left"
-msgstr "Залишилось на рахунку:"
+msgstr "Залишилось на рахунку"
 
 #: mysite/coffee/templates/coffee/index.html:24
 msgid "choose_drink"
@@ -92,15 +99,23 @@ msgstr "Ім'я"
 msgid "Password"
 msgstr "Пароль"
 
+#: mysite/coffee/templates/coffee/login.html:20
+msgid "login"
+msgstr "Увійти"
+
+#: mysite/coffee/templates/coffee/login.html:23
+msgid "register"
+msgstr "Зареєструватись"
+
 #: mysite/coffee/templates/coffee/success.html:8
-#: mysite/coffee/templates/coffee/success.html:12
+#: mysite/coffee/templates/coffee/success.html:13
 msgid "Success_page_title"
 msgstr "Замовлення успішне!"
 
-#: mysite/coffee/templates/coffee/success.html:13
+#: mysite/coffee/templates/coffee/success.html:14
 msgid "enjoy_your_drink"
 msgstr "Насолоджуйтесь вашим напоєм"
 
-#: mysite/coffee/templates/coffee/success.html:15
+#: mysite/coffee/templates/coffee/success.html:16
 msgid "order_again"
 msgstr "Замовити ще"

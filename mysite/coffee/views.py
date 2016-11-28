@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import loader
 from .models import *
+from  rest_framework import generics
+from .serializers import *
 
 
 def index(request):
@@ -83,13 +85,13 @@ def admin_update(request):
     ingredients = Ingredient.objects.all()
     users = User.objects.all()
     for drink in drinks:
-        drink.amount_left = int(request.POST['drink'+str(drink.id)])
+        drink.amount_left = int(request.POST['drink' + str(drink.id)])
         drink.save()
     for ingredient in ingredients:
-        ingredient.amount_left = int(request.POST['ingredient'+str(ingredient.id)])
+        ingredient.amount_left = int(request.POST['ingredient' + str(ingredient.id)])
         ingredient.save()
     for user in users:
-        user.money_left = float(request.POST['user'+str(user.id)])
+        user.money_left = float(request.POST['user' + str(user.id)])
         user.save()
     return HttpResponseRedirect('/coffee/admin/')
 
@@ -132,3 +134,28 @@ def success(request):
     user = User.objects.get(id=request.session['user_id'])
     context = {'user': user}
     return render(request, 'coffee/success.html', context)
+
+
+def logout(request):
+    request.session.flush()
+    return HttpResponseRedirect('/coffee/')
+
+
+class DrinkList(generics.ListCreateAPIView):
+    queryset = Drink.objects.all()
+    serializer_class = DrinkSerializer
+
+
+class DrinkDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Drink.objects.all()
+    serializer_class = DrinkSerializer
+
+
+class IngredientList(generics.ListCreateAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+
+
+class IngredientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer

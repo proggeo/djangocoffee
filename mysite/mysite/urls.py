@@ -21,5 +21,6 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = i18n_patterns(
     url(r'^polls/', include('polls.urls')),
     url(r'^coffee/', include('coffee.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^admin/', admin.site.urls),
 )
