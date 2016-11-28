@@ -20,7 +20,7 @@
     <input type="submit" value="{% trans "login" %}" class="btn btn-success btn-block"/>
 
 </form>
-    <a href="{% url 'coffee:register_page' %}">{% trans "register" %}</a>
+    <a href="{% url 'coffee:register_page' %}" class="btn btn-link">{% trans "register" %}</a>
 
     <form action="{% url 'set_language' %}" method="post" class="form-group">
         {% csrf_token %}

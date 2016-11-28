@@ -52,9 +52,9 @@
     </div>
 </form>
 {% if user.is_admin %}
-    <a href="{% url 'coffee:admin_page' %}">{% trans "admin_page" %}</a>
+    <a href="{% url 'coffee:admin_page' %}" class="btn btn-link">{% trans "admin_page" %}</a>
 {% endif %}
-    <a href="{% url 'coffee:logout' %}">{% trans "logout" %}</a>
+    <a href="{% url 'coffee:logout' %}" class="btn btn-link">{% trans "logout" %}</a>
 
     <form action="{% url 'set_language' %}" method="post" class="form-group">
         {% csrf_token %}

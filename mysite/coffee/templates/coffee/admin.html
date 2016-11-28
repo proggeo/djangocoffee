@@ -62,8 +62,8 @@
         <input type="submit" value="{% trans "Submit" %}" class="btn btn-success btn-block"/>
     </div>
     </form>
-    <a href="{% url 'coffee:order_page' %}">{% trans "order_page" %}</a>
-    <a href="{% url 'coffee:logout' %}">{% trans "logout" %}</a>
+    <a href="{% url 'coffee:order_page' %}" class="btn btn-link">{% trans "order_page" %}</a>
+    <a href="{% url 'coffee:logout' %}" class="btn btn-link">{% trans "logout" %}</a>
     <form action="{% url 'set_language' %}" method="post" class="form-group">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
