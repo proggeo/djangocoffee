@@ -41,3 +41,8 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.date) + ': ' + self.user.user_name
+
+
+class Record(models.Model):
+    username = models.ForeignKey(User)
+    time = models.DateTimeField(default=timezone.now)

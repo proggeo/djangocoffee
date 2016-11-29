@@ -4,7 +4,11 @@ from django.template import loader
 from .models import *
 from  rest_framework import generics
 from .serializers import *
+import logging
+from .singleton import *
 
+
+logger = logging.getLogger(__name__)  # logger
 
 def index(request):
     if 'type' not in request.session:
@@ -23,23 +27,22 @@ def register_page(request):
 
 def login(request):
     try:
-        print(request.POST['user_name'])
         user = User.objects.get(user_name=request.POST['user_name'])
-        print(user)
-        print(request.POST)
     except:
         return HttpResponseRedirect('/coffee/')
     else:
         if user.password == request.POST['password']:
             request.session['user_id'] = user.id
+            logger.warning('user ' + user.user_name + ' logged in')
+            SystemLog(user)
             if user.is_admin:
-                print('odmin')
                 request.session['type'] = 'admin'
                 return HttpResponseRedirect('/coffee/admin/')
             else:
                 request.session['type'] = 'user'
                 return HttpResponseRedirect('/coffee/order_page/')
         else:
+            logger.warning('user ' + user.user_name + ' entered wrong password')
             return HttpResponseRedirect('/coffee/')
 
 
@@ -47,7 +50,7 @@ def register(request):
     user_name = request.POST['user_name']
     password = request.POST['password']
     if len(user_name) < 0 or len(password) < 0:
-        return HttpResponseRedirect('/coffee/')
+        return HttpResponseRedirect('/coffee/register/')
     user = User(user_name=user_name, password=password)
     user.save()
     return HttpResponseRedirect('/coffee/')
@@ -71,16 +74,18 @@ def admin_page(request):
     drinks = Drink.objects.all()
     ingredients = Ingredient.objects.all()
     users = User.objects.all()
+    user = User.objects.get(id=request.session['user_id'])
     context = {
         'drinks': drinks,
         'ingredients': ingredients,
-        'users': users
+        'users': users,
+        'user': user
     }
     return render(request, 'coffee/admin.html', context)
 
 
 def admin_update(request):
-    print(request.POST)
+    # print(request.POST)
     drinks = Drink.objects.all()
     ingredients = Ingredient.objects.all()
     users = User.objects.all()
@@ -99,7 +104,7 @@ def admin_update(request):
 def order_drink(request):
     try:
         selected_drink = get_object_or_404(Drink, pk=request.POST['choice'])
-        print(request.POST)
+        # print(request.POST)
     except:
         return HttpResponseRedirect('/coffee/order_page/')
     else:
