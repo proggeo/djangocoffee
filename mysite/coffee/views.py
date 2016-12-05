@@ -7,8 +7,8 @@ from .serializers import *
 import logging
 from .singleton import *
 
-
 logger = logging.getLogger(__name__)  # logger
+
 
 def index(request):
     if 'type' not in request.session:
@@ -53,6 +53,7 @@ def register(request):
         return HttpResponseRedirect('/coffee/register/')
     user = User(user_name=user_name, password=password)
     user.save()
+    logger.warning('new user registered with name' + user_name)
     return HttpResponseRedirect('/coffee/')
 
 
@@ -98,6 +99,8 @@ def admin_update(request):
     for user in users:
         user.money_left = float(request.POST['user' + str(user.id)])
         user.save()
+    logger.warning('admin ' + User.objects.get(id=request.session['user_id']).user_name + ' updated resources')
+
     return HttpResponseRedirect('/coffee/admin/')
 
 
@@ -129,6 +132,7 @@ def order_drink(request):
                 ingredient.amount_left -= 1
                 ingredient.save()
             order.save()
+            logger.warning('successful order by user ' + User.objects.get(id=request.session['user_id']).user_name + ' made an order for ' + str(order.order_sum))
             return HttpResponseRedirect('/coffee/success')
         return HttpResponseRedirect('/coffee/order_page/')
 
@@ -142,6 +146,7 @@ def success(request):
 
 
 def logout(request):
+    logger.warning('user ' + str(request.session['user_id']) + ' logged out')
     request.session.flush()
     return HttpResponseRedirect('/coffee/')
 
